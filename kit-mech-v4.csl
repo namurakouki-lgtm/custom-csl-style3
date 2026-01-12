@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style default-locale="en-US" demote-non-dropping-particle="sort-only" version="1.0" class="in-text" xmlns="http://purl.org/net/xbiblio/csl">
+  <info>
+    <title>KIT mech - Koki Nakamura_v4</title>
+    <title-short>JES</title-short>
+    <id>http://csl.mendeley.com/styles/454767131/kit-mech_v4</id>
+    <link rel="self" href="http://www.zotero.org/styles/journal-of-the-electrochemical-society"/>
+    <link rel="documentation" href="http://www.electrochem.org/dl/support/assets/jes_inst.pdf"/>
+    <author>
+      <name>Julian Onions</name>
+      <email>julian.onions@gmail.com</email>
+    </author>
+    <contributor>
+      <name>Sebastian Karcher</name>
+    </contributor>
+    <contributor>
+      <name>Kosuke Nishida</name>
+      <uri>http://www.mendeley.com/profiles/kosuke-nishida/</uri>
+    </contributor>
+    <category citation-format="numeric"/>
+    <category field="chemistry"/>
+    <issn>0013-4651</issn>
+    <eissn>1945-7111</eissn>
+    <summary>Style for JES</summary>
+    <updated>2016-01-06T12:02:41+00:00</updated>
+    <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
+  </info>
+  <macro name="editor">
+    <names delimiter=", " variable="editor">
+      <name delimiter=", " and="text" initialize-with=". "/>
+      <label text-case="capitalize-first" prefix=", " form="long"/>
+    </names>
+  </macro>
+  <macro name="author">
+    <names variable="author">
+      <name and="text" initialize-with=". " et-al-use-first="1" et-al-min="3"/>
+      <label text-case="capitalize-first" prefix=", " form="short"/>
+      <substitute>
+        <names variable="editor"/>
+      </substitute>
+    </names>
+  </macro>
+  <macro name="access">
+    <text value=""/>
+  </macro>
+  <macro name="title">
+    <choose>
+      <if type="bill book graphic legal_case motion_picture report song" match="any">
+        <text variable="title" font-style="normal"/>
+      </if>
+      <else>
+        <text variable="title"/>
+      </else>
+    </choose>
+  </macro>
+  <macro name="publisher">
+    <group delimiter=", ">
+      <text variable="publisher"/>
+      <text variable="publisher-place"/>
+    </group>
+  </macro>
+  <macro name="volume">
+    <text variable="volume" prefix="vol. "/>
+  </macro>
+  <macro name="pages">
+    <text variable="page" prefix="p. "/>
+  </macro>
+  <macro name="issued">
+    <date delimiter=" " variable="issued">
+      <date-part name="year"/>
+    </date>
+  </macro>
+  <macro name="edition">
+    <choose>
+      <if is-numeric="edition">
+        <group delimiter=" ">
+          <number variable="edition" form="ordinal"/>
+          <text form="short" term="edition"/>
+        </group>
+      </if>
+      <else>
+        <text variable="edition" suffix="."/>
+      </else>
+    </choose>
+  </macro>
+
+  <citation collapse="citation-number">
+   <layout delimiter=",">
+    <group prefix="(" suffix=")" vertical-align="sup">
+      <text variable="citation-number"/>
+    </group>
+   </layout>
+  </citation>
+
+  <bibliography et-al-use-first="1" et-al-min="3" hanging-indent="false">
+  
+    <layout>
+      <text variable="citation-number" prefix="(" suffix=") "/>
+      <text macro="author" suffix=", "/>
+      <choose>
+        <if type="thesis">
+          <text value=" thesis, "/>
+          <text macro="publisher"/>
+          <text prefix=" (" suffix=")" macro="issued"/>
+        </if>
+        <else-if type="bill book graphic legal_case motion_picture report song" match="any">
+          <group>
+            <text prefix=" " macro="title"/>
+            <text prefix=" " macro="editor"/>
+          </group>
+          <group delimiter=", " prefix=", ">
+            <text macro="edition"/>
+            <date variable="issued" prefix="(" form="text" suffix=")" date-parts="year"/>
+            <text macro="publisher"/>
+          </group>
+          <text prefix=", " macro="pages"/>
+        </else-if>
+        <else-if type="chapter paper-conference" match="any">
+          <group prefix=" ">
+            <text term="in"/>
+            <text variable="container-title" prefix=" " font-style="italic" suffix=","/>
+            <text variable="collection-title" prefix=" " suffix="."/>
+            <text prefix=" " macro="editor"/>
+            <group delimiter=", " prefix=", ">
+              <text macro="volume"/>
+              <text macro="pages"/>
+              <text macro="publisher"/>
+            </group>
+            <text prefix=" (" suffix=")" macro="issued"/>
+          </group>
+        </else-if>
+        <else>
+          <group suffix=".">
+            <text prefix=" " macro="editor"/>
+          </group>
+          <group prefix=" ">
+            <text variable="title" suffix=", "/>
+            <text variable="container-title" form="short" font-style="normal" suffix=", "/>
+            <text variable="volume" suffix="-" font-weight="normal"/>
+            <text variable="issue" suffix=", "/>
+            <date variable="issued" prefix="(" form="text" suffix="), " date-parts="year"/>
+            <text variable="page"/>
+          </group>
+        </else>
+      </choose>
+      <text prefix=" " suffix="." macro="access"/>
+    </layout>
+  </bibliography>
+</style>
